@@ -1,23 +1,19 @@
 import React from 'react';
 import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
+import Todo from './Todo';
 
-
-
-export default function TodoList(props) {
+export default function TodoList({ todos, removeTodo, toggleTodo }) {
     return (
         <Paper>
             <List>
-                {props.todos.map(todo =>
+                {todos.map(todo =>
                     <>
-                        <ListItem>
-                            <ListItemText>
-                                {todo.task}
-                            </ListItemText>
-                        </ListItem>
+                        <Todo task={todo.task} id={todo.id} key={todo.id} completed={todo.completed}
+                            removeTodo={removeTodo}
+                            toggleTodo={toggleTodo}
+                        />
                         <Divider />
                     </>
                 )}

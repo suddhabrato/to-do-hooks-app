@@ -5,7 +5,8 @@ import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 import TodoList from './TodoList';
-
+import TodoForm from './TodoForm';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function TodoApp() {
     const initialTodos = [
@@ -14,6 +15,20 @@ export default function TodoApp() {
         { id: 3, task: 'Study', completed: false }
     ]
     const [todos, setTodos] = useState(initialTodos);
+
+    const addTodo = (newTodoText) => {
+        setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
+    }
+
+    const removeTodo = (todoId) => {
+        const updatedTodos = todos.filter(todo => todo.id !== todoId);
+        setTodos(updatedTodos);
+    }
+
+    const toggleTodo = (todoId) => {
+        setTodos(todos.map(todo => todo.id === todoId ? { ...todo, completed: !todo.completed } : todo));
+    }
+
     return (
         <Paper sx={{
             padding: '0',
@@ -28,7 +43,12 @@ export default function TodoApp() {
                     <Typography color='inherit'>Todos With Hooks</Typography>
                 </Toolbar>
             </AppBar>
-            <TodoList todos={todos} />
+            <Grid container justifyContent='center' sx={{ marginTop: '1rem' }}>
+                <Grid item xs={11} md={8} lg={4}>
+                    <TodoForm addTodo={addTodo} />
+                    <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+                </Grid>
+            </Grid>
         </Paper>
     )
 }
