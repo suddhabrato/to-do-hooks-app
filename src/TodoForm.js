@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import useinputState from './hooks/useInputState';
+import { TodosContext } from './context/todosContext';
 
-export default function TodoForm({ addTodo }) {
+export default function TodoForm() {
     const [value, handleChange, reset] = useinputState('');
+    const { addTodo } = useContext(TodosContext);
     return (
         <Paper sx={{ margin: '1rem 0', padding: '0 1rem' }}>
             <form onSubmit={e => {
