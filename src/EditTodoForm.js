@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import useinputState from './hooks/useInputState';
-import { TodosContext } from './context/todosContext';
+import { DispatchContext } from './context/todosContext';
 
 export default function EditTodoForm({ id, task, toggleEditForm }) {
     const [value, handleChange, reset] = useinputState(task);
-    const { dispatch } = useContext(TodosContext);
+    const dispatch = useContext(DispatchContext);
     return (
         <form style={{ marginLeft: '1rem', width: '50%' }}
             onSubmit={(evt) => {

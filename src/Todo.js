@@ -8,11 +8,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import useToggle from './hooks/useToggle';
 import EditTodoForm from './EditTodoForm';
-import { TodosContext } from './context/todosContext';
+import { DispatchContext } from './context/todosContext';
 
 export default function Todo({ task, completed, id }) {
     const [isEditing, toggle] = useToggle(false);
-    const { dispatch } = useContext(TodosContext);
+    const dispatch = useContext(DispatchContext);
     return (
         <ListItem sx={{ height: '64px' }}>
             {isEditing ?
