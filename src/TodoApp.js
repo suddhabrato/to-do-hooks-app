@@ -6,12 +6,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
-import useTodoState from './hooks/useTodoState';
 import { TodosProvider } from './context/todosContext';
 
 export default function TodoApp() {
-
-
     return (
         <Paper sx={{
             padding: '0',
